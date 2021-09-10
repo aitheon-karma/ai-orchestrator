@@ -1,0 +1,5 @@
+<div class="gantt-elastic__calendar-row d-flex">
+  <div *ngFor="let item of items" class="gantt-elastic__calendar-row-rect" [style.width]="(proportionsMap ? width * proportionsMap[item] : width) + 'px'">
+    <div class="gantt-elastic__calendar-row-text">{{ item }}</div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+  <h3>Calendar</h3>
+  <div class="calendar-wrapper" *ngIf="events && events.length">
+    <full-calendar
+      [plugins]="calendarPlugins"
+      [events]="events"
+      [editable]="true"
+      [eventLimit]="5"
+      [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      }"
+      (eventClick)="eventClick($event.event.extendedProps)"
+      (eventDrop)="updateEvent($event)"
+      (eventResize)="updateEvent($event)">
+    </full-calendar>
+  </div>
+  <div class="loading-wrapper" *ngIf="isLoading">
+    <ai-loading></ai-loading>
+  </div>
+  <br>
+  <div>
+    <button class="btn btn-primary pull-right" (click)="create()">Create calendar task</button>
+    <h2>{{ tasks && tasks.length ? 'List of tasks' : 'No tasks' }}</h2>
+    <br>
+    <div class="row">
+      <div class="ol-xs-2 col-md-4 col-lg-3" *ngFor="let task of tasks">
+        <div class="card mb-4">
+          <div class="card-header">
+            <a [routerLink]="['./', task._id]">{{ task.name }}</a>
+            <button class="btn btn-danger rounded-button" (click)="delete(task)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+          </div>
+          <div class="card-body">
+            {{ task.description }}
+            <br>
+            <p><b>start:</b>&nbsp;<span>{{ formatDateUS(task.startDate) }}</span></p>
+            <p><b>finish:</b>&nbsp;<span>{{ formatDateUS(task.finishDate) }}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

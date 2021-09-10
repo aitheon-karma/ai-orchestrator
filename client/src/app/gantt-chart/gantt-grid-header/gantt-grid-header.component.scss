@@ -1,0 +1,56 @@
+.gantt-elastic__task-list-header {
+  display: flex;
+  user-select: none;
+  vertical-align: middle;
+  height: 60px;
+  margin-bottom: 6px;
+  .gantt-elastic__task-list-header-column {
+    box-sizing: border-box;
+    border-top: none transparent;
+    border-right: none transparent;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-image: initial;
+    display: flex;
+    background: rgb(243, 245, 247);
+    .gantt-elastic__task-list-expander-wrapper {
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-shrink: 0;
+      margin: 0px 0px 0px 10px;
+    }
+    .gantt-elastic__task-list-header-label {
+      box-sizing: border-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin: auto 6px;
+      flex-grow: 1;
+      vertical-align: middle;
+      text-align: center;
+      width: 100%;
+      max-height: 100%;
+    }
+    .gantt-elastic__task-list-header-resizer-wrapper {
+      box-sizing: border-box;
+      background: transparent;
+      height: 100%;
+      width: 6px;
+      cursor: col-resize;
+      display: inline-flex;
+      .gantt-elastic__task-list-header-resizer {
+        box-sizing: border-box;
+        margin: auto 0px;
+      }
+      .gantt-elastic__task-list-header-resizer-dot {
+        box-sizing: border-box;
+        width: 3px;
+        height: 3px;
+        background: rgb(221, 221, 221);
+        border-radius: 100%;
+        margin: 4px 0px;
+      }
+    }
+  }
+}

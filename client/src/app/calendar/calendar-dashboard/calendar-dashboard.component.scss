@@ -1,0 +1,20 @@
+.card-header {
+  position: relative;
+  padding-right: 50px;
+  min-height: 60px;
+  .rounded-button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%!important;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+  }
+}
+
+::ng-deep {
+  .fc-scroller.fc-day-grid-container {
+    overflow: hidden hidden !important;
+  }
+}

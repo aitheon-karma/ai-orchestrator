@@ -1,0 +1,76 @@
+<div class="task-list">
+  <div *ngIf="tasks !== undefined">
+    <div class="" *ngFor="let task of tasks" [contextMenu]="basicMenu"  [contextMenuSubject]="task">
+      <div class="row " >
+        <div class="col">
+          <div class="activity-task-item" >
+            <div class="row select border rounded-bottom border-top-0" (dblclick)="toggleSubtasks(task)" [style.background-color]="task.selectedcolor" (click) ="AddtoSelectedTasklist(task)" >
+              <div class="col-md-1 form-check" >
+                  <i class="fa"  [ngClass]="{'fa-chevron-right': !task.expanded, 'fa-chevron-down': task.expanded}" aria-hidden="true"></i>{{ task._id }}
+              </div>
+              <div class="col-md-4">
+                <a class="task-name" (click)="editTask(task)">{{ task.name }}</a>
+                <!-- <i class="fa" *ngIf="task.subTasks.length > 0" [ngClass]="{'fa-chevron-right': !task.expanded, 'fa-chevron-down': task.expanded}" aria-hidden="true"></i> -->
+                <div class="task-description">
+                  {{ task.description }}
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div [ngStyle]="{'color': getColor(task)}"> {{ task.state?.name }}</div>
+              </div>
+              <div class="col-md-2">
+                  <i *ngIf="task.taskType" class="{{task.taskType.glyphicon}}" aria-hidden="true"></i>
+                  {{ taskType }},
+                  <div *ngIf="task.recurring === true">
+                    Recurring
+                  </div>
+                  <div *ngIf="task.recurring === false">
+                    Non-Recurring
+                  </div>
+              </div>
+              <div class="col-md-2">
+              <p class="task-due" *ngIf="task.recurring === false">Due Date: {{ task.finishDate|date :'yyyy-MM-dd' }}</p>
+              </div>
+              <div class="col-md-1">
+                <div class="priority" *ngIf="task.priority === 1" style="background-color: red; border-color: darkred;">
+                  <div class="priority-text">1</div>
+                </div>
+                <div class="priority" *ngIf="task.priority === 2" style="background-color: orange; border-color: darkorange">
+                  <div class="priority-text">2</div>
+                </div>
+                <div class="priority" *ngIf="task.priority === 3" style="background-color: lightsteelblue; border-color: steelblue">
+                  <div class="priority-text">3</div>
+                </div>
+                <div class="priority" *ngIf="task.priority === 4" style="background-color: lightgray; border-color: gray">
+                  <div class="priority-text">4</div>
+                </div>
+                <div class="priority" *ngIf="task.priority === 5" style="border-color: lightgray">
+                  <div class="priority-text">5</div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="task.expanded && task.subTasks.length > 0"  class="task-content" >
+              <ai-task-list [tasks]="task.subTasks" ></ai-task-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<context-menu>
+
+    <ng-template contextMenuItem (execute)=AddChild($event.item)>
+     Add SubTask
+    </ng-template>
+    <!--<ng-template contextMenuItem (execute)= settaskCompleted($event.item)>
+     Task Completed
+    </ng-template>   -->
+    <ng-template contextMenuItem (execute)=editTask($event.item)>
+      Edit Task
+     </ng-template>
+
+</context-menu>
+
+

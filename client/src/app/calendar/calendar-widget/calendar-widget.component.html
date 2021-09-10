@@ -1,0 +1,18 @@
+<div class="container-lg-fluid" flDriveUploader *ngIf="!collapsed">
+  <div class="row">
+    <div class="col-12">
+      <div class="card" [class.iframe]="iframe">
+        <div class="card-body">
+            <p>
+              calendar-widget works!
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="collapsed" class="mini-calendar" (click)="expand()">
+  <span>Calendar</span>
+  <span class="badge badge-danger" *ngIf="totalNewMessages > 0">{{ totalNewMessages }}</span>
+</div>

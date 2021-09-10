@@ -1,0 +1,10 @@
+<ng-template #template>
+  <div class="modal-body">
+    <ai-task-form
+      *ngIf="modalMeta"
+      [modalMeta]="modalMeta"
+      (onSave)="onSaveModal($event)"
+      (onCancel)="onCancelModal($event)">
+    </ai-task-form>
+  </div>
+</ng-template>

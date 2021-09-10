@@ -1,0 +1,67 @@
+@import "../../../styles/variables";
+
+.hours-filters {
+  &__button {
+    color: $base-gray;
+
+    &--active {
+      color: $primary-gold-dt;
+
+      &:hover {
+        background-color: rgba($primary-gold-dt, 0.15) !important;
+      }
+    }
+
+    &:hover {
+      background-color: rgba($base-gray, 0.15);
+    }
+  }
+
+  &__filters-main {
+    display: flex;
+    align-items: center;
+  }
+
+  &__filters-main-button {
+    position: relative;
+  }
+
+  &__quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: -7px;
+    right: -6px;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 16px;
+    background: rgb(220, 188, 101);
+    border: 2px solid rgb(26, 26, 26);
+    border-radius: 50%;
+  }
+
+  &__add-deal::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+    background: $tundora-gray;
+  }
+
+  &__days {
+    display: flex;
+    align-items: center;
+  }
+}
+
+::ng-deep .dark .ngx-charts text {
+  fill: #7e7e7e !important ;
+}

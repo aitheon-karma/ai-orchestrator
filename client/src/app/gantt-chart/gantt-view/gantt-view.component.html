@@ -1,0 +1,22 @@
+<div style="box-sizing: border-box; width: 100%; height: 300px;">
+  <div class="gantt-elastic__chart-graph" style="box-sizing: border-box; overflow: hidden; height: 100%;" [style.width]="(ganttService.dayWidth * ganttService.daysOnGrid) + 'px'">
+      <svg x="0" y="0" width="100%" [style.height]="(ganttService.lineHeight + 1) * ganttService.displayedTasks.length + 'px'" xmlns="http://www.w3.org/2000/svg" class="gantt-elastic__chart">
+
+        <svg aiDayBoundaries x="0" y="0" xmlns="http://www.w3.org/2000/svg"></svg>
+
+        <svg x="0" y="0" width="100%" height="100%" class="gantt-elastic__chart-dependency-lines-container" style="box-sizing: border-box;">
+            <g task="[object Object]"><path task="[object Object]" class="gantt-elastic__chart-dependency-lines-path" style="box-sizing: border-box; fill: transparent; stroke: rgba(255, 160, 0, 0.565); stroke-width: 2;" d="M 580.3703113561 90
+              L 590.3703113561,90 Q 594.3703113561,90 594.3703113561,94
+                L 594.3703113561,158
+                Q 594.3703113561,162 590.3703113561,162
+                L 455.09624908488007,162
+                Q 451.09624908488007,162 451.09624908488007,166
+                L 451.09624908488007,230
+                Q 451.09624908488007,234 455.09624908488007,234
+                L 465.09624908488007,234"></path></g>
+        </svg>
+
+        <g *ngFor="let task of ganttService.displayedTasks; index as i" aiTaskBoundaries class="gantt-elastic__chart-row-wrapper" [task]="task" [index]="i"></g>
+    </svg>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="gantt-elastic__task-list-header">
+  <div *ngFor="let column of ganttService.headerSettings" class="gantt-elastic__task-list-header-column" [style.width]="column.width + 'px'">
+    <div *ngIf="column.action" class="gantt-elastic__task-list-expander-wrapper">
+      <ai-expand-button (click)="toggleExpanded()" [expanded]="!expanded"></ai-expand-button>
+    </div>
+    <div class="gantt-elastic__task-list-header-label">{{ column.label }}</div>
+    <div (mousedown)="resizerMouseEventDown(column)" class="gantt-elastic__task-list-header-resizer-wrapper">
+      <div class="gantt-elastic__task-list-header-resizer">
+          <div class="gantt-elastic__task-list-header-resizer-dot"></div>
+          <div class="gantt-elastic__task-list-header-resizer-dot"></div>
+          <div class="gantt-elastic__task-list-header-resizer-dot"></div>
+      </div>
+    </div>
+  </div>
+</div>

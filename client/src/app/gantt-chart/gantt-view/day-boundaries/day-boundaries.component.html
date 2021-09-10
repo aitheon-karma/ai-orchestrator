@@ -1,0 +1,15 @@
+<svg:g class="gantt-elastic__grid-lines" style="box-sizing: border-box;">
+  <rect
+    *ngFor="let day of ganttService.days; index as i"
+    [attr.x]="i * ganttService.dayWidth"
+    y="0"
+    [attr.width]="ganttService.dayWidth"
+    height="100%"
+    [ngStyle]="{'fill': ganttService.holidays.includes(day) ? 'rgba(243, 245, 247, 0.5)' : 'rgba(255, 255, 255, 1)', 'stroke': 'rgba(0, 0, 0, 0.063)', 'stroke-width': 1}">
+  </rect>
+
+  <line x1="0" x2="100%" y1="0.5" y2="0.5" style="stroke: rgba(0, 0, 0, 0.063); stroke-width: 1;"></line>
+  <line *ngFor="let row of ganttService.displayedTasks; index as i" x1="0" x2="100%" [attr.y1]="0.5 + (i + 1) * (ganttService.lineHeight + 1)" [attr.y2]="0.5 + (i + 1) * (ganttService.lineHeight + 1)" style="stroke: rgba(0, 0, 0, 0.063); stroke-width: 1;"></line>
+
+  <line [attr.x1]="ganttService.dayWidth * ganttService.dayOffset + 1/2 * ganttService.dayWidth" [attr.x2]="ganttService.dayWidth * ganttService.dayOffset + 1/2 * ganttService.dayWidth" y1="0" y2="100%" class="gantt-elastic__grid-line-time" style="box-sizing: border-box; stroke: rgba(255, 0, 0, 0.5); stroke-width: 1;"></line>
+</svg:g>

@@ -1,0 +1,49 @@
+<div class="gantt-elastic__task-list-items" style="overflow: hidden; height: 300px;">
+  <div *ngFor="let task of ganttService.displayedTasks" class="gantt-elastic__task-list-item">
+      <div class="gantt-elastic__task-list-item-column" [ngStyle]="{width: ganttService.headerSettings[0]?.width + 'px', height: ganttService.lineHeight + 'px'}">
+        <div class="gantt-elastic__task-list-item-value-wrapper">
+            <div class="gantt-elastic__task-list-item-value-container">
+              <div class="gantt-elastic__task-list-item-value">2</div>
+            </div>
+        </div>
+      </div>
+      <div class="gantt-elastic__task-list-item-column" [ngStyle]="{width: ganttService.headerSettings[1]?.width + 'px', height: ganttService.lineHeight + 'px'}">
+        <div class="gantt-elastic__task-list-item-value-wrapper">
+            <div class="gantt-elastic__task-list-expander-wrapper" [style.paddingLeft]="task.depth * 10 + 6 + 'px'" [style.visibility]="task.subTasks.length ? 'visible' : 'hidden'">
+              <ai-expand-button (click)="toggleExpanded(task)" [expanded]="!task.expanded"></ai-expand-button>
+            </div>
+            <div class="gantt-elastic__task-list-item-value-container">
+              <div (click)="editTask(task._id)" class="gantt-elastic__task-list-item-value cursor-pointer">{{ task.name }}</div>
+            </div>
+        </div>
+      </div>
+      <div class="gantt-elastic__task-list-item-column" [ngStyle]="{width: ganttService.headerSettings[2]?.width + 'px', height: ganttService.lineHeight + 'px'}">
+        <div class="gantt-elastic__task-list-item-value-wrapper">
+            <div class="gantt-elastic__task-list-item-value-container">
+              <div class="gantt-elastic__task-list-item-value"><a href="https://www.google.com/search?q=Peter+Parker" target="_blank" style="color:#0077c0;">Peter Parker</a></div>
+            </div>
+        </div>
+      </div>
+      <div class="gantt-elastic__task-list-item-column" [ngStyle]="{width: ganttService.headerSettings[3]?.width + 'px', height: ganttService.lineHeight + 'px'}">
+        <div class="gantt-elastic__task-list-item-value-wrapper">
+            <div class="gantt-elastic__task-list-item-value-container">
+              <div class="gantt-elastic__task-list-item-value">2019-02-24</div>
+            </div>
+        </div>
+      </div>
+      <div class="gantt-elastic__task-list-item-column" [ngStyle]="{width: ganttService.headerSettings[4]?.width + 'px', height: ganttService.lineHeight + 'px'}">
+        <div class="gantt-elastic__task-list-item-value-wrapper">
+            <div class="gantt-elastic__task-list-item-value-container">
+              <div class="gantt-elastic__task-list-item-value">{{ task.type }}</div>
+            </div>
+        </div>
+      </div>
+      <div class="gantt-elastic__task-list-item-column" [ngStyle]="{width: ganttService.headerSettings[5]?.width + 'px', height: ganttService.lineHeight + 'px'}">
+        <div class="gantt-elastic__task-list-item-value-wrapper">
+            <div class="gantt-elastic__task-list-item-value-container text-align-center">
+              <div class="gantt-elastic__task-list-item-value">50</div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

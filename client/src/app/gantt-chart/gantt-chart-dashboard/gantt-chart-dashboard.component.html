@@ -1,0 +1,27 @@
+<div id="gantt" class="mt-2">
+    <div class="gantt-elastic">
+       <div class="gantt-elastic__main-view" style="box-sizing: border-box; background: rgb(255, 255, 255);">
+          <div class="gantt-elastic__main-container-wrapper position-relative" style="box-sizing: border-box; overflow: hidden; height: 367px;">
+            <p *ngIf="ganttService.loading">Loading...</p>
+            <div (wheel)="onWheelChart($event)" class="gantt-elastic__container" style="box-sizing: border-box; display: flex; max-width: 100%; height: 100%;">
+                <div class="gantt-elastic__task-list-container">
+                  <ai-gantt-grid-header></ai-gantt-grid-header>
+                  <ai-gantt-grid-body #ganttGridBody></ai-gantt-grid-body>
+                </div>
+                <div #ganttViewWrapper class="gantt-elastic__main-view-container">
+                  <div class="gantt-elastic__chart">
+                    <ai-gantt-calendar-view></ai-gantt-calendar-view>
+                    <ai-gantt-view #ganttView></ai-gantt-view>
+                  </div>
+                </div>
+            </div>
+             <div #verticalScroll (scroll)="onScroll($event, false)" class="gantt-elastic__chart-scroll-container position-absolute" style="bottom: 0; right: 0; overflow: hidden auto; max-height: 100%; width: 15px; height: 300px; margin-top: 66px;">
+                <div class="gantt-elastic__chart-scroll--vertical" style="width: 1px;" [style.height]="ganttService.displayedTasks.length * ganttService.lineHeight + 25 + 'px'"></div>
+             </div>
+          </div>
+          <div #horizontalScroll (scroll)="onScroll($event, true)" class="gantt-elastic__chart-scroll-container" style="overflow: auto; max-width: 100%;" [style.marginLeft]="scrollbarMarginLeft() + 'px'">
+             <div class="gantt-elastic__chart-scroll--horizontal" style="height: 1px;" [style.width]="(ganttService.dayWidth * ganttService.daysOnGrid) + 'px'"></div>
+          </div>
+       </div>
+    </div>
+ </div>

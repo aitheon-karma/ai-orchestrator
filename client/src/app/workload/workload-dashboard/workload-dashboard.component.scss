@@ -1,0 +1,19 @@
+::ng-deep .tabs ul.nav.nav-tabs {
+    background: transparent !important;
+    padding: 0;
+    border-bottom: solid 1px rgb(69, 69, 69);
+  
+    .nav-item.active { background: transparent !important }
+  
+    .nav-item { background: transparent !important }
+  
+    .link { background: transparent !important }
+  
+    .nav-link { background-color: transparent }
+  
+    .nav-link.active {
+      background: transparent !important;
+      color: #dcbc65;
+    }
+  }
+  

@@ -1,0 +1,25 @@
+
+<svg:g (click)="editTask()" class="gantt-elastic__chart-row-bar-wrapper gantt-elastic__chart-row-task-wrapper cursor-pointer" style="box-sizing: border-box;">
+  <svg x="0" [attr.y]="(ganttService.lineHeight + 1) * index + 5" width="120" height="24" viewBox="0 0 120 24" xmlns="http://www.w3.org/2000/svg" class="gantt-elastic__chart-row-bar gantt-elastic__chart-row-task" style="box-sizing: border-box;">
+    <defs>
+      <clipPath id="gantt-elastic__task-clip-path-6">
+        <polygon points="0,0 120,0 120,24 0,24"></polygon>
+      </clipPath>
+    </defs>
+    <polygon points="0,0 120,0 120,24 0,24" class="gantt-elastic__chart-row-bar-polygon gantt-elastic__chart-row-task-polygon" style="box-sizing: border-box; stroke: rgb(126, 52, 157); stroke-width: 1; fill: rgb(142, 68, 173);"></polygon>
+    <g class="gantt-elastic__chart-row-progress-bar-wrapper" clip-path="url(#gantt-elastic__task-clip-path-6)" style="box-sizing: border-box;">
+      <defs>
+        <pattern id="diagonalHatch" width="20" height="20" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="0" y2="20" class="chart-row-progress-bar-line" style="box-sizing: border-box; stroke: rgba(255, 255, 255, 0.145); stroke-width: 20;"></line>
+        </pattern>
+      </defs>
+      <g>
+        <rect x="50%" y="0" width="50%" height="100%" class="gantt-elastic__chart-row-progress-bar-pattern" style="box-sizing: border-box; fill: url(&quot;#diagonalHatch&quot;);"></rect>
+        <path d="M 57.63703113561001 0 L 57.63703113561001 24" class="gantt-elastic__chart-row-progress-bar-outline" style="box-sizing: border-box; stroke: rgb(126, 52, 157); stroke-width: 1; fill: rgb(142, 68, 173);"></path>
+      </g>
+    </g>
+  </svg>
+  <svg x="150" [attr.y]="(ganttService.lineHeight + 1) * index" width="120" height="24" width="180" height="36" class="gantt-elastic__chart-row-text-wrapper" style="box-sizing: border-box;">
+      <text x="0" y="22" font-family="Verdana" font-size="12" fill="black">{{ task.description }}</text>
+  </svg>
+</svg:g>

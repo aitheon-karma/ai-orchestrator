@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ai-orchestrator
+  labels:
+    app: ai-orchestrator
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ai-orchestrator
+    spec:
+      containers:
+      - env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: shared-config
+              key: MONGODB_URI
+        - name: DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: shared-config
+              key: DOMAIN
+        - name: NODE_ENV
+          value: production
+        envFrom:
+         - configMapRef:
+             name: ai-orchestrator
+        image: 890606282206.dkr.ecr.eu-west-1.amazonaws.com/ai-orchestrator:1.7.0
+        imagePullPolicy: "Always"
+        name: ai-orchestrator
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 3

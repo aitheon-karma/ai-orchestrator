@@ -1,0 +1,268 @@
+@import '~@aitheon/core-client/styles/main.css';
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+.fc-view-container {
+    .fc-event {
+        background-color: #007bff;
+        color: white !important;
+    }
+}
+
+.dropdown-item {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  color: #000000;
+  background: #c9b25e;
+  border: 1px solid rgba(214, 196, 136, 0.35);
+  box-shadow: 0 0 0 4px rgba(214, 190, 125, 0.22);
+}
+
+body.dark {
+  background-color: #181818;
+  padding-top: 65px !important;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.3px;
+  color: #fff;
+  .grey {
+    color: #8c8c8c;
+  }
+  .yellow {
+    color: #dcbc65;
+  }
+  .white {
+    color: #fff;
+  }
+  .form-control {
+    border: none;
+    border-bottom: 1px solid #454545;
+    background: transparent;
+    color: #ffffff;
+    &:focus {
+      border-bottom: 1px solid #DCBC65;
+      background: #454545;
+      color: #ffffff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.01);
+    }
+  }
+
+  .ng-select.ng-select-disabled > .ng-select-container {
+    background-color: #454545;
+  }
+
+  .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    // border: 1px solid #DCBC65!important;
+    border: none !important;
+    box-shadow: none;
+    border-radius: 2px;
+  }
+  .ng-select.ng-select-opened>.ng-select-container {
+    border: 1px solid #454545;
+    border-radius: 2px;
+    background-color: #363636;
+  }
+  .ng-select-container {
+    border: 1px solid #454545;
+    border-radius: 2px;
+    background-color: #363636;
+    color: #ffffff;
+  }
+
+  .ng-dropdown-panel {
+    span {
+      color: #ffffff!important;
+    }
+    background-color: #363636;
+    border: 1px solid #454545!important;
+    border-radius: 2px;
+    .ng-option {
+      background-color: #363636!important;
+      &.ng-option-marked {
+        background-color: #454545!important;
+      }
+    }
+  }
+
+  .ngx-contextmenu {
+    ul.dropdown-menu {
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+      background-color: #363636!important;
+      a.dropdown-item {
+        color: #ffffff;
+        &:hover, &:active, &:focus {
+          background-color: #454545;
+        }
+      }
+      .dropdown-divider {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border: none;
+        border-top: 1px solid #454545;
+      }
+    }
+  }
+
+  .modal {
+    &.show::before {
+      box-sizing: border-box;
+      position: fixed;
+      display: block;
+      content: '';
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-dialog {
+      margin: 10rem auto;
+    }
+
+    .modal-xxl {
+      @media (min-width: 576px) {
+        width: 900px !important;
+        max-width: 900px !important;
+      }
+    }
+
+    .modal-open-project {
+      height: 700px;
+      max-height: 700px;
+      min-height: 600px;
+      .modal-content {
+        height: 100%;
+        .modal-body {
+          padding-left: 20px;
+          padding-right: 20px;
+          position: relative;
+        }
+      }
+      .creator_modal_footer {
+        padding-right: 0;
+      }
+    }
+
+    .modal-height-xxl {
+      margin: 5rem auto;
+
+      .modal-content {
+        height: 710px !important;
+      }
+    }
+
+    .modal-body {
+      padding: 20px 30px 74px 30px;
+    }
+
+    .modal-header {
+      height: 60px;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    input {
+      box-shadow: none;
+      border-bottom: 1px solid #454545;
+      // width: 60%;
+      // margin: 0 auto;
+      border-radius: 0;
+      transition: .15s ease-in;
+    }
+
+    .no-spinners {
+      -moz-appearance:textfield;
+    }
+
+    .no-spinners::-webkit-outer-spin-button,
+    .no-spinners::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    textarea,
+    input {
+        &:focus {
+          box-shadow: none;
+          color: #fff !important;
+          border-color: #dcbc65;
+          background-color: transparent !important;
+        }
+      }
+
+      .form-control:disabled,
+      .form-control[readonly] {
+        background-color: transparent !important;
+      }
+
+    .modal-title {
+      color: #dcbc65;
+      padding-left: 2rem;
+      font-size: 18px;
+      letter-spacing: 3px;
+
+      &:before {
+          content: '//';
+          position: absolute;
+          left: 30px;
+          letter-spacing: 2px;
+      }
+    }
+
+    .creator_modal_footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px 15px;
+      background-color: #222222;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+      &__cancel_button,
+      &__create_button,
+      &__open_button,
+      &__next_button,
+      &__back_button,
+      &__submit_button {
+          cursor: pointer;
+          font-size: 12px;
+          width: 120px;
+          box-shadow: none;
+          font-weight: 400!important;
+          width: 134px;
+      }
+
+      &__cancel_button,
+      &__back_button {
+          border: none;
+          color: #dcbc65;
+      }
+
+      &__create_button,
+      &__open_button,
+      &__next_button,
+      &__submit_button {
+          padding: 10px 15px;
+          line-height: 1;
+          background-color: #dcbc65;
+          color: #222222;
+      }
+    }
+  }
+}

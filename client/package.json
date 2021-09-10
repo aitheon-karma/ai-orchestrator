@@ -1,0 +1,35 @@
+{
+  "name": "ai-orchestrator",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --aot --base-href /",
+    "build:prod": "$(npm bin)/ng build --aot --prod --base-href /orchestrator/ && npm run docs",
+    "watch": "ng build --watch=true --aot",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "lib:watch": "$(npm bin)/ng build @aitheon/orchestrator --watch",
+    "lib:version": "cd projects/aitheon/orchestrator && npm version minor",
+    "lib:build": "$(npm bin)/ng build @aitheon/orchestrator",
+    "lib:publish": "npm run lib:build && npm publish dist/aitheon/orchestrator",
+    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./projects/",
+    "typedoc": "typedoc"
+  },
+  "private": true,
+  "dependencies": {
+    "@aitheon/core-client": "1.14.27",
+    "@aitheon/orchestrator": "^0.41.0",
+    "@aitheon/hr": "^0.3.0",
+    "@angular/cdk": "^7.0.4",
+    "@fullcalendar/angular": "^4.1.0",
+    "@fullcalendar/core": "^4.1.0",
+    "@fullcalendar/daygrid": "^4.1.0",
+    "@fullcalendar/interaction": "^4.1.0",
+    "@swimlane/ngx-charts": "^12.0.1",
+    "ng-drag-drop": "^5.0.0",
+    "ngx-contextmenu": "^5.1.1"
+  },
+  "devDependencies": {}
+}

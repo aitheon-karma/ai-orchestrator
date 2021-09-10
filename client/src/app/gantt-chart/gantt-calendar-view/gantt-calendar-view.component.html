@@ -1,0 +1,7 @@
+<div class="gantt-elastic__calendar-wrapper" [style.width]="(ganttService.dayWidth * ganttService.daysOnGrid) + 'px'">
+  <div class="gantt-elastic__calendar">
+      <ai-calendar-row [items]="ganttService.months" [width]="ganttService.dayWidth * ganttService.daysOnGrid" [proportionsMap]="ganttService.monthMap"></ai-calendar-row>
+      <ai-calendar-row [items]="ganttService.days" [width]="ganttService.dayWidth"></ai-calendar-row>
+      <ai-calendar-row [items]="ganttService.hours" [width]="ganttService.dayWidth / 6"></ai-calendar-row>
+  </div>
+</div>

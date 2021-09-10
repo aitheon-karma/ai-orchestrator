@@ -1,0 +1,25 @@
+<ai-header [serviceName]="'ORCHESTRATOR'"></ai-header>
+<div class="card">
+  <nav class="navbar navbar-expand">
+    <div class="d-flex w-100 justify-content-between container pt-2">
+      <ul class="navbar-nav mr-auto">
+        <li *ngFor="let link of links" class="org-nav__item">
+          <a class="org-nav__link" routerLinkActive="org-nav__link--active" [routerLink]="link.route">{{ link.name }}</a>
+        </li>
+      </ul>
+      <div class="d-flex flex-row">
+        <form class="form-inline my-2 my-lg-0 mr-4">
+          <div class="search">
+            <input type="text" placeholder="Search" aria-label="Search">
+          </div>
+        </form>
+        <button class="btn btn-primary" (click)="createTask()">Create task</button>
+        <!-- <button class="btn btn-primary active"><span class="fa fa-gear"></span></button> -->
+      </div>
+    </div>
+  </nav>
+  <main class="container pl-0 pr-0 mt-3">
+    <router-outlet></router-outlet>
+  </main>
+  <ai-task-modal></ai-task-modal>
+</div>

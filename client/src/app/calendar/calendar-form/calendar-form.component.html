@@ -1,0 +1,59 @@
+ <div class="container-lg-fluid">
+  <div class="card">
+    <div class="card-body">
+      <form *ngIf="taskForm" novalidate [formGroup]="taskForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="show">Name</label>
+          <input type="text" placeholder="Task name" class="form-control" formControlName="name">
+          <small *ngIf="submitted && taskForm.get('name').hasError('required')" class="text-danger">
+            Name is required
+          </small>
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Please describe your task..." class="form-control" rows="5" formControlName="description">
+          <small *ngIf="submitted && taskForm.get('description').hasError('required')" class="text-danger">
+            Description is required
+          </small>
+        </div>
+        <div class="d-flex justify-content-start flex-row flex-wrap">
+
+          <div class="pr-md-5">
+            <h2>Start date: </h2>
+            <div class="d-flex justify-content-start flex-row flex-wrap">
+              <div>
+                <br>
+                <input type="text" style="margin-top: 14px" formControlName="startDate" placeholder="Datepicker" class="form-control" bsDatepicker>
+              </div>
+              <div>
+                <timepicker formControlName="startTime" class="d-inline-block"></timepicker>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2>Finish date: </h2>
+            <div class="d-flex justify-content-start flex-row flex-wrap">
+              <div>
+                <br>
+                <input type="text" style="margin-top: 14px" formControlName="finishDate" placeholder="Datepicker" class="form-control" bsDatepicker>
+              </div>
+              <div>
+                <timepicker formControlName="finishTime" class="d-inline-block"></timepicker>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary ripple-effect mr-2" type="submit">Save</button>
+            <button class="btn btn-outline ripple-effect mr-2" (click)="cancel()" type="button">Cancel</button>
+          </div>
+          <div *ngIf="task && task._id">
+              <button class="btn btn-danger ripple-effect" (click)="delete()" type="button">Delete</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

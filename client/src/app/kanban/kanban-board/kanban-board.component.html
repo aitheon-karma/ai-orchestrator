@@ -1,0 +1,124 @@
+<!-- <div class="w-100 pt-3 pb-3 d-flex justify-content-end">
+  <div class="btn-group">
+    <button class="btn btn-primary mr-3" [class.active]="modernStyle" (click)="modernStyle = true" role="button">Modern
+      style</button>
+    <button class="btn btn-primary" [class.active]="!modernStyle" (click)="modernStyle = false" role="button">Classic
+      style</button>
+  </div>
+</div> -->
+
+<!-- <div *ngIf="modernStyle" class="kanban-board-component position-relative">
+  <div class="mb-3" *ngIf="loading">
+    <ai-loading></ai-loading>
+  </div>
+  <div class="position-absolute w-100 h-100" style="display: grid; grid-auto-columns: 1fr;">
+    <div *ngFor="let state of taskStates" class="h-100 kanban-board-component__drop-columns" droppable (onDrop)="moveTask($event, state)"></div>
+  </div>
+  <div [ngStyle]="{'display': 'grid', 'grid-template-columns': 'repeat(' + taskStates.length + ', 1fr)', 'grid-auto-flow': 'row dense'}">
+    <div *ngFor="let state of taskStates" style="grid-row-start: 1; grid-row-end: span 1; grid-column-end: span 1;" class="kanban-board-component__header--grid">
+      {{ state }}
+    </div>
+    <div *ngFor="let task of baseTasks" draggable [dragData]="task" [ngStyle]="getParentTaskStyle(task)" class="kanban-board-component__column--item">
+      <div class="d-flex justify-content-left">
+        <button *ngIf="task.subTasks.length" type="button" class="btn btn-link" (click)="task.expanded = !task.expanded">
+          <i class="kanban-board-component__column--chevron fa fa-chevron-right" [class.expanded]="task.expanded" aria-hidden="true"></i>
+        </button>
+        <div class="d-flex flex-column">
+            <p class="pl-3 pt-2 cursor-pointer" (click)="editTask(task)">{{ task.name }}&nbsp;<span class="badge badge-warning">{{ task.state }}</span></p>
+            <div class="pl-3"><button class="btn btn-sm btn-outline-success" (click)="addSubtask(task)"><span class="fa fa-plus">&nbsp;</span>Add subtask</button></div>
+        </div>
+      </div>
+      <div *ngIf="task.expanded">
+        <hr class="m-3"/>
+        <div class="pl-5" *ngFor="let subtask of task.subTasks">
+          <p class="pl-3 pt-2 cursor-pointer" (click)="editTask(subtask)">{{ subtask.name }}&nbsp;<span class="badge badge-warning">{{ subtask.state }}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!modernStyle" class="d-flex flex-row w-100 kanban-board-component">
+  <div *ngFor="let state of taskStates" class="d-flex flex-grow-1 kanban-board-component__column">
+    <div class="w-100" droppable (onDrop)="moveTask($event, state)">
+      <div class="kanban-board-component__header w-100">
+        {{ state }}
+      </div>
+      <div class="w-100">
+        <div *ngFor="let task of taskGroups[state]" draggable [dragData]="task" class="kanban-board-component__column--item d-flex flex-grow-1 flex-column">
+            <p class="pl-3 pt-2 cursor-pointer" (click)="editTask(task)">{{ task.name }}</p>
+            <div class="pl-3"><button class="btn btn-sm btn-outline-success" (click)="addSubtask(task)"><span class="fa fa-plus">&nbsp;</span>Add subtask</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- List  -->
+
+<div class="row mt-5">
+  <div class="mt-3 w-100">
+    <div class="col-12">
+      <div class="row table-header">
+        <div class="col-1">ID</div>
+        <div class="col-5">Name</div>
+        <div class="col-3">Status</div>
+        <div class="col-3">Action</div>
+      </div>
+      <div *ngIf="!loading; else loadingView" class="mb-4">
+        <div *ngIf="taskList?.length > 0">
+          <div *ngFor="let taskList of taskList; let i = index;" class="row table-list mt-2 border-left__orange"            
+            [ngClass]="{'border-left__orange' : taskList.state == 'PENDING', 'border-left__blue' : taskList.state == 'IN_PROGRESS', 'border-left__green' : taskList.state == 'DONE'}">
+            <div class="col-1">{{i+1}}</div>
+            <div class="col-5 word-break">{{taskList.name}}
+              <!-- <div class="tooltip">
+                <span *ngIf="req?.items?.length > 1" class="items-remaining">
+                  +{{ (req?.items?.length - 1) }} {{(req?.items?.length - 1) > 1 ? 'items' : 'item'}}
+                </span>
+                <span class="tooltiptext">{{req?.itemNames.join(',')}}</span>
+              </div> -->
+            </div>
+
+            <div class="col-3"><span
+                [ngClass]="{'status_orange' : taskList.state == 'PENDING', 'status_blue' : taskList.state == 'IN_PROGRESS', 'status_green' : taskList.state == 'DONE'}">{{taskList.state}}</span>
+            </div>
+            <div class="col-3">
+              <button class="btn btn-sm btn-outline-success" (click)="addSubtask(taskList)"><span class="fa fa-plus">&nbsp;</span>Add subtask</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="taskList?.length == 0" class="row no-content mt-2">
+          <div>No Request</div>
+        </div>
+      </div>
+      <div class="table-container mt-2 mb-4" *ngIf="taskList?.length">
+        <div class="table-actions table-footer flex-center align-items-center justify-content-end">
+            <ul #pagination class="pagination pagination-ul" *ngIf="optionFlag">
+                <div *ngIf="pageNumberList[0] == 1"> </div>
+                <li class="page-item" *ngIf="currentPage > 1">
+                    <a class="page-link previous" href="javascript:void(0)"
+                        (click)="setPage(currentPage-1)">Previous</a>
+                </li>
+                <li class="page-item" *ngFor="let page of pageNumberList">
+                    <a *ngIf="page > 0; else dots" class="page-link" [ngClass]="{active:currentPage === page}"
+                        href="javascript:void(0)" (click)="setPage(page)">{{page}}</a>
+                    <ng-template #dots>
+                        <span class="dots">...</span>
+                    </ng-template>
+                </li>
+                <li class="page-item" *ngIf="totalPages != currentPage">
+                    <a class="page-link next" href="javascript:void(0)" (click)="setPage(currentPage+1)">Next</a>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loadingView>
+  <ai-loading *ngIf="loading" class="text-center d-block mt-3"></ai-loading>
+</ng-template>
+

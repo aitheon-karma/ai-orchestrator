@@ -1,0 +1,38 @@
+.activity-task-item{
+  border-bottom: 1px solid lightgray;
+  min-height: 50px;
+  margin-bottom: 5px;
+}
+.task-name{
+  text-decoration-line: underline;
+  font-weight: bold;
+}
+.task-description{
+
+}
+.task-list{
+  float: left;
+  width: 100%;
+}
+
+.task-content{
+  padding-left: 20px;
+}
+.select{
+  transition:all 0.8s;
+ 
+}
+.priority{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid;
+  margin-top: 6px;
+}
+.priority-text{
+  text-align: center;
+  height: 100%;
+  padding-top: 5px;
+  font-weight: bolder;
+  color: black;
+}

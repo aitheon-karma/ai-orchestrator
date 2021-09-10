@@ -1,0 +1,10 @@
+<div class="custom-container mt-4">
+  <tabset class="tabs tabs--large">
+    <tab heading="Hours" (select)="selectedTab='Hours'">
+      <ai-workload-hours-list [selectedTab]="selectedTab"></ai-workload-hours-list>
+    </tab>
+    <tab heading="Task" (select)="selectedTab='Tasks'">
+      <ai-workload-task-list [employees]="employeesList" [selectedTab]="selectedTab"></ai-workload-task-list>
+    </tab>
+  </tabset>
+</div>

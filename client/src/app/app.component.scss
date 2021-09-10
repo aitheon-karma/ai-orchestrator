@@ -1,0 +1,48 @@
+.navbar {
+  background-color: #454545;
+  .nav-link {
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
+
+.navbar-expand {
+  position: sticky;
+  top: 62px;
+  z-index: 1020;
+  background-color: #2b2b2b;
+}
+
+.org-nav {
+
+  &__items {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    height: 100%;
+    font-size: 14px;
+  }
+
+  &__item {
+    &:not(:first-child) {
+      margin-left: 1.875rem;
+    }
+  }
+
+  &__link {
+    color: #8c8c8c;
+
+    &:hover {
+      color: #dcbc65;
+      text-decoration: none;
+    }
+
+    &--active {
+      color: #dcbc65;
+      text-decoration: none;
+    }
+  }
+}
+
+.card { background-color: #181818 }

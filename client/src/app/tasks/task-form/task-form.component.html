@@ -1,0 +1,123 @@
+<ai-loading *ngIf="loading"></ai-loading>
+<form *ngIf="taskForm" novalidate [formGroup]="taskForm" class="row" [class.submitted]="submitted">
+  <div class="col-8">
+    <h1>{{ taskForm.value.name }}</h1>
+      <div *ngIf="taskForm.value.type === TaskType.TASK" >
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="name" class="">Name</label>
+              <input class="form-control" formControlName="name" type="text" placeholder="Enter Name" name="name" id="name">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="description" class="">Description</label>
+              <textarea rows="3" class="form-control" formControlName="description" type="text" placeholder="Enter Description" name="description" id="description"></textarea>
+            </div>
+          </div>
+          <div class="col-12">
+            <ai-file-upload formControlName="files" [userId]="userId" [organizationId]="organization?._id" [serviceId]="serviceId"></ai-file-upload>
+          </div>
+
+          <p *ngIf="submitted && taskForm.invalid" class="text-danger pl-3">
+            Please fill all the required fields
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="taskForm.value.type === TaskType.MILESTONE">
+        Task Type Milestone
+      </div>
+
+      <div *ngIf="taskForm.value.type === TaskType.EVENT">
+        Task Type Event
+      </div>
+  </div>
+
+  <div class="col-4">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="close" aria-label="Close" (click)="cancelTask()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div *ngIf="task && task._id">
+      <p class="m-0">
+        Task {{ taskRunning ? 'running' : 'stopped'}}. Time:
+        <ai-timer [timeSeconds]="taskTime" [running]="taskRunning"></ai-timer>
+      </p>
+      <button type="button" class="btn btn-primary mt-2 mb-2" (click)="toggleTask()">
+          {{ taskRunning ? 'Stop' : 'Start'}} task
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label for="type" class="">Task Type</label>
+      <ng-select id="type"
+        [items]="taskTypes"
+        [virtualScroll]="true"
+        [clearable]="true"
+        bindLabel="name"
+        bindValue="name"
+        placeholder="Select Task Type"
+        formControlName="type">
+      </ng-select>
+    </div>
+    <div class="form-group">
+      <label for="type" class="">Task State</label>
+      <ng-select id="state"
+        [items]="taskStates"
+        bindLabel="name"
+        bindValue="name"
+        placeholder="Select Task State"
+        formControlName="state">
+      </ng-select>
+    </div>
+    <div class="form-group">
+      <label for="parentTask" class="">Parent task</label>
+      <ng-select id="parentTask"
+        [items]="tasks$ | async"
+        [virtualScroll]="true"
+        [clearable]="true"
+        bindLabel="name"
+        bindValue="_id"
+        placeholder="Select Parent Task"
+        formControlName="parentTask">
+      </ng-select>
+    </div>
+    <div class="form-group">
+      <label for="service" class="">Assign to a service</label>
+      <ng-select id="service"
+        [items]="services"
+        [virtualScroll]="true"
+        [clearable]="true"
+        bindLabel="name"
+        bindValue="name"
+        placeholder="Select Service"
+        formControlName="service">
+      </ng-select>
+    </div>
+    <div *ngIf="organization" class="form-group">
+      <label for="assigned" class="">Assign to users</label>
+      <ng-select id="assigned"
+        [items]="assigned$ | async"
+        [virtualScroll]="true"
+        [clearable]="true"
+        bindValue="_id"
+        bindLabel="name"
+        placeholder="Select Users"
+        [multiple]="true"
+        [hideSelected]="true"
+        [loading]="loading"
+        [typeahead]="assignedInput$"
+        formControlName="assigned">
+      </ng-select>
+    </div>
+  </div>
+  <div class="col-12 mt-5 d-flex justify-content-end">
+    <button class="btn btn-secondary" [class.disabled]="loading" (click)="cancelTask()">Cancel</button>
+    <button class="btn btn-primary" [class.disabled]="loading" (click)="saveTask()">Save</button>
+  </div>
+</form>
+
+<ai-generic-modal #clockedInInfo (confirm)="redirectToClockIn()"></ai-generic-modal>
